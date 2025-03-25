@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+body {
+  font-family: 'Indie Flower', cursive !important;
+  background: #FDE3A7; /*CAPE HONEY*/
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  perspective: 1500px; /* Tambahkan efek 3D */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+  
+.card {
+  position: relative;
+  width: 320px; /* Tambah sedikit lebar */
+  height: 500px; /* Perbesar tinggi */
+  background: #e0e1dc;
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3), 
+              -10px -10px 20px rgba(255, 255, 255, 0.5);
+  transition: transform 1s ease-in-out;
+  border-radius: 5px;
+  overflow: hidden; /* Mencegah gambar keluar */
+}
+
+.card:hover {
+  transform: perspective(2000px) rotateY(15deg);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Efek ketebalan buku */
+.card:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #BAC1BA;
+  transform-origin: bottom;
+  transform: skewX(-45deg);
+}
+
+.card:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 5px;
+  height: 100%;
+  background: #92A29C;
+  transform-origin: left;
+  transform: skewY(-45deg);
+}
+
+/* Sampul buku */
+.card .imgBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transition: transform 0.8s ease-in-out;
+  z-index: 2;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+  overflow: hidden;
+}
+
+.card .imgBox img {
+  width: 10	0%;
+  height: 100%;
+  object-fit: cover; /* Perbaikan agar gambar tidak terpotong */
+}
+
+/* Efek buka buku */
+.card:hover .imgBox {
+  transform: rotateY(-140deg);
+}
+
+/* Halaman dalam buku */
+.card .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background: #f8f9fa; /* Warna kertas lebih realistis */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 5px;
+  box-shadow: inset 10px 10px 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Agar teks tidak keluar */
+}
+
+.card:hover .details {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Rapihin teks */
+.card .details p {
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: justify;
+  margin: 10px 0;
+}
+
+.card .details h4 {
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Amatic SC', cursive;
+  margin-bottom: 10px;
+}
+
+.text-right {
+  text-align: right;
+}
